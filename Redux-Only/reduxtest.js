@@ -1,50 +1,44 @@
-const {createStore} = require('redux');
-
+const { createStore } = require('redux');
 
 //Declare a initial state
-const initialState= 
-{
-    age:21
+const initialState = {
+  age: 21,
 };
 
 //Reducer
-const myReducer = (state= initialState,action)=>
-{    
-    //Always clone a copy don't mutate state
-    const newState={...state}; 
-    if(action.type==='ADD')
-    {
-    newState.age +=1;
-    }
-    if(action.type==='SUBTRACT')
-    {
-    newState.age -=1;
-    }
-    return newState;
-}
+const myReducer = (state = initialState, action) => {
+  //Always clone a copy don't mutate state
+  const newState = { ...state };
+  if (action.type === 'ADD') {
+    newState.age += 1;
+  }
+  if (action.type === 'SUBTRACT') {
+    newState.age -= 1;
+  }
+  return newState;
+};
 
 const store = createStore(myReducer);
 
 //Output from store subscription
-store.subscribe(()=>{
-      console.log('state changed', JSON.stringify(store.getState()))
-})
+store.subscribe(() => {
+  console.log('state changed', JSON.stringify(store.getState()));
+});
 
 //OutPut:
-//console.log('initial state',JSON.stringify(store.getState())); //Print age as 21   
+//console.log('initial state',JSON.stringify(store.getState())); //Print age as 21
 
-store.dispatch({type:'ADD'})
+store.dispatch({ type: 'ADD' });
 //console.log('after add',JSON.stringify(store.getState())); //Print age as 22
-    
-store.dispatch({type:'SUBTRACT'})
-//console.log('afetr subtract',JSON.stringify(store.getState())); //Print age as 21
 
+store.dispatch({ type: 'SUBTRACT' });
+//console.log('afetr subtract',JSON.stringify(store.getState())); //Print age as 21
 
 //Reducer with action payload
 //   const myReducer = (state= initialState,action)=>
-//   {    
+//   {
 //       //Always clone a copy don't mutate state
-//       const newState={...state}; 
+//       const newState={...state};
 //       if(action.type==='ADD')
 //       {
 //       newState.age +=action.val;
@@ -56,5 +50,4 @@ store.dispatch({type:'SUBTRACT'})
 //       return newState;
 //   }
 
-
-  //store.dispatch({type:'ADD',val:5})
+//store.dispatch({type:'ADD',val:5})
